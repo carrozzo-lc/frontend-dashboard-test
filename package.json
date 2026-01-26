@@ -1,0 +1,29 @@
+{
+  "name": "material-ui-vite-ts",
+  "version": "7.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "fake-server": "json-server --watch db.json --port 3001"
+  },
+  "dependencies": {
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@mui/icons-material": "latest",
+    "@mui/material": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "latest",
+    "json-server": "1.0.0-beta.5",
+    "prettier": "3.8.1",
+    "typescript": "latest",
+    "vite": "latest"
+  }
+}
