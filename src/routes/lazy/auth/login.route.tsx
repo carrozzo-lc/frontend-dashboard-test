@@ -1,5 +1,0 @@
-import LoginPage from '@/pages/auth/LoginPage';
-
-export function Component() {
-  return <LoginPage />;
-}

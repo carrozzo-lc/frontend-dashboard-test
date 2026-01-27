@@ -1,7 +1,9 @@
 import { createBrowserRouter, redirect } from 'react-router';
 // loaders
-import { requireAuth } from '@/loaders/auth.loader';
-import { requireGuest } from '@/loaders/guest.loader';
+import { requireAuth } from '@/routes/loaders/auth.loader';
+import { requireGuest } from '@/routes/loaders/guest.loader';
+// actions
+import { loginAction } from '@/routes/actions/login.action';
 // pages
 import LoginPage from '@/pages/auth/LoginPage';
 import HomePage from '@/pages/dashboard/HomePage';
@@ -31,13 +33,12 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH_AUTH.login,
+        action: loginAction,
         Component: LoginPage,
       },
     ],
   },
-
   // ──────────────── APP (PROTECTED) ────────────────
-
   {
     path: PATH_DASHBOARD.root,
     loader: requireAuth,
@@ -58,15 +59,12 @@ export const router = createBrowserRouter([
           },
         ],
       },
-      // { path: 'users', Component: UsersPage },
     ],
   },
-
   // ───────────────── ERRORS ─────────────────
   {
     path: PATH_PAGE.page404,
     Component: NotFound,
   },
-
   { path: '*', loader: () => redirect(PATH_PAGE.page404) },
 ]);

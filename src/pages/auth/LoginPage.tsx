@@ -1,27 +1,56 @@
-import { useAuth } from '@/store/AuthContext';
-import { useNavigate } from 'react-router';
+// mui
+import Typography from '@mui/material/Typography';
+import MuiCard from '@mui/material/Card';
+import { styled } from '@mui/material/styles';
+// components
+import Logo from '@/components/Logo';
+import FormLogin from '@/components/auth/FormLogin';
+// router
+import { useActionData, useNavigation } from 'react-router';
+
+// ----------------------------------------------------------------------
+
+const Card = styled(MuiCard)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignSelf: 'center',
+  width: '100%',
+  padding: theme.spacing(4),
+  gap: theme.spacing(2),
+  margin: 'auto',
+  [theme.breakpoints.up('sm')]: {
+    maxWidth: '450px',
+  },
+  boxShadow:
+    'hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px',
+  ...theme.applyStyles('dark', {
+    boxShadow:
+      'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px',
+  }),
+}));
 
 const LoginPage = () => {
-  const { login } = useAuth();
-  const navigate = useNavigate();
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-
-    const form = e.currentTarget as HTMLFormElement;
-    const email = form.email.value;
-    const password = form.password.value;
-
-    await login(email, password);
-    navigate('/');
-  }
+  const actionData = useActionData();
+  const navigation = useNavigation();
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input name="email" placeholder="email" />
-      <input name="password" type="password" />
-      <button>Login</button>
-    </form>
+    <Card variant="outlined">
+      <Logo />
+
+      <Typography
+        component="h1"
+        variant="h4"
+        sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
+      >
+        Login
+      </Typography>
+
+      <FormLogin
+        isSubmitting={navigation.state === 'submitting'}
+        serverError={actionData?.error}
+      />
+    </Card>
   );
 };
+
 export default LoginPage;
