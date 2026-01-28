@@ -5,8 +5,6 @@ import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-// router
-import { Form, useSubmit } from 'react-router';
 // react-hook-form
 import { useForm, Controller } from 'react-hook-form';
 // schemas
@@ -18,11 +16,10 @@ import { loginSchema, loginSchemaType } from '@/schemas/login.schema';
 interface FormLoginProps {
   isSubmitting: boolean;
   serverError?: string;
+  onSubmit: (data: loginSchemaType) => void | Promise<void>;
 }
 
-const FormLogin = ({ isSubmitting, serverError }: FormLoginProps) => {
-  const submit = useSubmit();
-
+const FormLogin = ({ isSubmitting, serverError, onSubmit }: FormLoginProps) => {
   const {
     control,
     handleSubmit,
@@ -33,11 +30,7 @@ const FormLogin = ({ isSubmitting, serverError }: FormLoginProps) => {
   });
 
   return (
-    <Form
-      method="post"
-      noValidate
-      onSubmit={handleSubmit((data) => submit(data, { method: 'post' }))}
-    >
+    <form noValidate onSubmit={handleSubmit(onSubmit)}>
       <Box
         sx={{
           display: 'flex',
@@ -103,7 +96,7 @@ const FormLogin = ({ isSubmitting, serverError }: FormLoginProps) => {
           </Typography>
         )}
       </Box>
-    </Form>
+    </form>
   );
 };
 

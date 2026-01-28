@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export type User = {
   id: number;
   email: string;
@@ -5,17 +7,17 @@ export type User = {
 };
 
 const API_URL = 'http://localhost:3001';
+const USERS_URL = `${API_URL}/users`;
 
 export async function login(email: string, password: string): Promise<User> {
   if (!email || !password) {
     throw new Error('Invalid credentials');
   }
 
-  const res = await fetch(
-    `${API_URL}/users?email=${email}&password=${password}`
+  const response = await axios.get(
+    `${USERS_URL}?email=${email}&password=${password}`
   );
-
-  const users: User[] = await res.json();
+  const users = response.data;
 
   if (!users.length) {
     throw new Error('Invalid credentials');
@@ -29,6 +31,8 @@ export async function login(email: string, password: string): Promise<User> {
 
 export function getAuthenticatedUser(): User | null {
   const raw = localStorage.getItem('user');
+
+  console.log('getAuthenticatedUser()', raw);
   return raw ? JSON.parse(raw) : null;
 }
 

@@ -16,7 +16,7 @@ const Logo = ({ logoSrc, disabledLink = false, sx }: LogoProps) => {
     <Box
       component="img"
       src={logoSrc ? logoSrc : appLogo}
-      sx={{ width: 200, height: 'auto', ...sx }}
+      sx={{ width: 200, height: 'auto', textAlign: 'left', ...sx }}
     />
   );
 

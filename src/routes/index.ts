@@ -2,8 +2,6 @@ import { createBrowserRouter, redirect } from 'react-router';
 // loaders
 import { requireAuth } from '@/routes/loaders/auth.loader';
 import { requireGuest } from '@/routes/loaders/guest.loader';
-// actions
-import { loginAction } from '@/routes/actions/login.action';
 // pages
 import LoginPage from '@/pages/auth/LoginPage';
 import HomePage from '@/pages/dashboard/HomePage';
@@ -12,8 +10,8 @@ import PostsPage from '@/pages/dashboard/PostsPage';
 // layouts
 import AuthLayout from '@/layouts/auth/AuthLayout';
 import DashboardLayout from '@/layouts/dashboard/DashboardLayout';
-import AuthLayoutSkeleton from '@/components/ui/skeletons/AuthLayoutSkeleton';
-import DashboardLayoutSkeleton from '@/components/ui/skeletons/DashboardLayoutSkeleton';
+import AuthLayoutSkeleton from '@/components/skeletons/AuthLayoutSkeleton';
+import DashboardLayoutSkeleton from '@/components/skeletons/DashboardLayoutSkeleton';
 // paths
 import { PATH_DASHBOARD, PATH_AUTH, PATH_PAGE } from '@/routes/paths';
 
@@ -33,7 +31,6 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH_AUTH.login,
-        action: loginAction,
         Component: LoginPage,
       },
     ],

@@ -1,10 +1,10 @@
 import * as ReactDOM from 'react-dom/client';
-import { RouterProvider } from 'react-router';
-import { AuthProvider } from './stores/AuthContext';
 import { router } from '@/routes/index';
-import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { theme } from '@/theme';
+import { RouterProvider } from 'react-router';
+import { AuthProvider } from './providers/AuthProvider';
+import { ThemeProvider } from '@mui/material/styles';
 
 const root = document.getElementById('root');
 

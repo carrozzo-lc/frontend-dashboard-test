@@ -6,7 +6,9 @@ import { styled } from '@mui/material/styles';
 import Logo from '@/components/Logo';
 import FormLogin from '@/components/auth/FormLogin';
 // router
-import { useActionData, useNavigation } from 'react-router';
+import { useNavigate } from 'react-router';
+import { useState } from 'react';
+import { useAuth } from '@/providers/AuthProvider';
 
 // ----------------------------------------------------------------------
 
@@ -30,8 +32,24 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 const LoginPage = () => {
-  const actionData = useActionData();
-  const navigation = useNavigation();
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [serverError, setServerError] = useState<string | undefined>();
+
+  const handleSubmit = async (data: { email: string; password: string }) => {
+    setServerError(undefined);
+    setIsSubmitting(true);
+
+    try {
+      await login(data.email, data.password);
+      navigate('/');
+    } catch {
+      setServerError('Email o password non corrette');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <Card variant="outlined">
@@ -46,8 +64,9 @@ const LoginPage = () => {
       </Typography>
 
       <FormLogin
-        isSubmitting={navigation.state === 'submitting'}
-        serverError={actionData?.error}
+        isSubmitting={isSubmitting}
+        serverError={serverError}
+        onSubmit={handleSubmit}
       />
     </Card>
   );

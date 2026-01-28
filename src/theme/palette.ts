@@ -1,12 +1,8 @@
 export const palette = {
   primary: {
-    main: '#7C3AED',
+    main: '#2563EB',
   },
   secondary: {
-    main: '#22C55E',
-  },
-  background: {
-    default: '#f9fafb',
-    paper: '#ffffff',
+    main: '#16A34A',
   },
 };
