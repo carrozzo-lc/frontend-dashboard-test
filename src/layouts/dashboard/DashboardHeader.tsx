@@ -20,8 +20,8 @@ const AppBar = styled(MuiAppBar)(({ theme }) => ({
   borderWidth: 0,
   borderBottomWidth: 1,
   borderStyle: 'solid',
-  borderColor: (theme.vars ?? theme).palette.divider,
-  backgroundColor: theme.lighten(theme.palette.primary.light, 0.95),
+  borderColor: theme.palette.divider,
+  backgroundColor: theme.lighten(theme.palette.primary.light, 0.92),
   boxShadow: 'none',
   zIndex: theme.zIndex.drawer + 1,
 }));

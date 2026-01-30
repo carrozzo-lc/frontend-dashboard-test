@@ -5,6 +5,18 @@
       "name": "Mario Rossi",
       "email": "mario@example.com",
       "password": "password123"
+    },
+    {
+      "id": 2,
+      "name": "Giulia Bianchi",
+      "email": "giulia@example.com",
+      "password": "password123"
+    },
+    {
+      "id": 3,
+      "name": "Luca Verdi",
+      "email": "luca@example.com",
+      "password": "password123"
     }
   ],
   "posts": [
@@ -14,6 +26,104 @@
       "title": "Il mio primo post",
       "content": "Contenuto di esempio",
       "createdAt": "2025-01-10T10:30:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "title": "React Router v7: prime impressioni",
+      "content": "Sto sperimentando React Router v7 e apprezzo molto l'integrazione con i loader e le action.",
+      "createdAt": "2025-01-11T09:15:00Z"
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "title": "Perché usare TanStack Query",
+      "content": "La gestione dello stato server con TanStack Query semplifica caching, retry e sincronizzazione.",
+      "createdAt": "2025-01-12T14:45:00Z"
+    },
+    {
+      "id": 4,
+      "userId": 3,
+      "title": "Context vs Query: quando usarli",
+      "content": "Il Context è ottimo per stato globale UI, mentre TanStack Query è ideale per dati asincroni.",
+      "createdAt": "2025-01-13T08:20:00Z"
+    },
+    {
+      "id": 5,
+      "userId": 2,
+      "title": "Architettura semplice per colloquio",
+      "content": "Meglio una struttura chiara e motivata che una soluzione iper-ingegnerizzata.",
+      "createdAt": "2025-01-14T16:00:00Z"
+    },
+    {
+      "id": 6,
+      "userId": 3,
+      "title": "Error handling con loader",
+      "content": "Gestire redirect ed errori direttamente nei loader rende il flusso più prevedibile.",
+      "createdAt": "2025-01-15T11:10:00Z"
+    },
+    {
+      "id": 7,
+      "userId": 3,
+      "title": "Loader come gate di accesso",
+      "content": "Usare i loader per proteggere le rotte evita duplicazioni di logica nei componenti.",
+      "createdAt": "2025-01-16T09:40:00Z"
+    },
+    {
+      "id": 8,
+      "userId": 3,
+      "title": "Colloqui frontend: cosa valutano davvero",
+      "content": "Chiarezza, motivazioni architetturali e capacità di spiegare le scelte contano più dei framework.",
+      "createdAt": "2025-01-17T15:30:00Z"
+    },
+    {
+      "id": 9,
+      "userId": 1,
+      "title": "Type vs Interface in TypeScript",
+      "content": "Uso interface per i contratti pubblici e type per composizione e utility types.",
+      "createdAt": "2025-01-18T10:05:00Z"
+    },
+    {
+      "id": 10,
+      "userId": 1,
+      "title": "Gestire lo stato auth in React",
+      "content": "Per l'autenticazione spesso Context + storage è più che sufficiente.",
+      "createdAt": "2025-01-19T08:50:00Z"
+    },
+    {
+      "id": 11,
+      "userId": 2,
+      "title": "MUI v7: sx o styled?",
+      "content": "sx per styling locale e rapido, styled per componenti riutilizzabili e di layout.",
+      "createdAt": "2025-01-20T13:20:00Z"
+    },
+    {
+      "id": 12,
+      "userId": 2,
+      "title": "Folder structure pragmatica",
+      "content": "Una struttura semplice è più facile da spiegare e mantenere, soprattutto in fase di colloquio.",
+      "createdAt": "2025-01-21T17:10:00Z"
+    },
+    {
+      "id": 13,
+      "userId": 2,
+      "title": "TanStack Query: default options",
+      "content": "Impostare staleTime e retry globali migliora UX e riduce richieste inutili.",
+      "createdAt": "2025-01-22T09:00:00Z"
+    },
+    {
+      "id": 14,
+      "userId": 1,
+      "title": "Router-first mindset",
+      "content": "Con React Router moderno, il router diventa il punto centrale del flusso applicativo.",
+      "createdAt": "2025-01-23T14:35:00Z"
+    },
+    {
+      "id": 15,
+      "userId": 1,
+      "title": "Pensare come un senior",
+      "content": "Non è la complessità del codice, ma la qualità delle decisioni a fare la differenza.",
+      "createdAt": "2025-01-24T18:00:00Z"
     }
   ]
 }

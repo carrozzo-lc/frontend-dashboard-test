@@ -28,7 +28,8 @@ const PopoverBase = ({
       slotProps={{
         paper: {
           sx: {
-            p: 0,
+            pt: 1,
+            pb: 1,
             minWidth: 220,
           },
         },

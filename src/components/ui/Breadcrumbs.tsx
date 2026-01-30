@@ -35,11 +35,7 @@ const Breadcrumbs = () => {
         <Link component={RouterLink} color="inherit" to="/">
           Home
         </Link>
-      ) : (
-        <Typography sx={{ color: 'text.primary', textTransform: 'capitalize' }}>
-          Home
-        </Typography>
-      )}
+      ) : null}
       {pathnames.map((name, index) => {
         const routeName = name.trim().replace(/-/g, ' ');
         const routeTo = `/${pathnames.slice(0, index + 1).join('/')}`;

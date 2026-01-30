@@ -32,7 +32,6 @@ export async function login(email: string, password: string): Promise<User> {
 export function getAuthenticatedUser(): User | null {
   const raw = localStorage.getItem('user');
 
-  console.log('getAuthenticatedUser()', raw);
   return raw ? JSON.parse(raw) : null;
 }
 

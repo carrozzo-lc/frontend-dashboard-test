@@ -86,6 +86,7 @@ const DashboardLayout = () => {
             flexDirection: 'column',
             flex: 1,
             overflow: 'auto',
+            backgroundColor: '#FBFDFF',
           }}
         >
           <Container

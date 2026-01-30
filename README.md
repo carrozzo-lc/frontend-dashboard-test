@@ -1,41 +1,38 @@
-# Material UI - Vite example in TypeScript
+# TecnoNews Frontend Dashboard
 
-## How to use
+Dashboard admin per gestire post e utenti. Costruito con React, Vite, MUI, React Router e React Query.
 
-Download the example [or clone the repo](https://github.com/mui/material-ui):
+## Requisiti
 
-<!-- #target-branch-reference -->
+- Node.js (consigliato LTS)
+- pnpm (o npm)
+
+## Setup
 
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-ui-vite-ts
-cd material-ui-vite-ts
+pnpm install
+pnpm dev
 ```
 
-Install it and run:
+Se usi npm:
 
 ```bash
 npm install
 npm run dev
 ```
 
-or:
+## API (locale)
 
-<!-- #target-branch-reference -->
+Il progetto usa un mock server JSON su `http://localhost:3001`.
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/master/examples/material-ui-vite-ts)
+## Avvio rapido
 
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-ui-vite-ts)
+1. Avvia il mock server (`pnpm dev-server`)
+2. Avvia il frontend (`pnpm dev`)
 
-## The idea behind the example
+## Script
 
-<!-- #host-reference -->
-
-This example demonstrates how you can use Material UI with [Vite](https://vite.dev) in [TypeScript](https://github.com/Microsoft/TypeScript).
-It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI.
-
-## What's next?
-
-<!-- #host-reference -->
-
-You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+- `pnpm dev` avvia il frontend
+- `pnpm dev-server` avvia il mock server (json-server)
+- `pnpm build` build di produzione
+- `pnpm preview` preview della build

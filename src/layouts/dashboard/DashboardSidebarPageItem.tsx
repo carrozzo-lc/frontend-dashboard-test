@@ -9,7 +9,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 // constants
-import { MINI_DRAWER_WIDTH } from '@/theme/constants';
+import { MINI_DRAWER_WIDTH } from '@/config/constants';
 
 // ----------------------------------------------------------------------
 

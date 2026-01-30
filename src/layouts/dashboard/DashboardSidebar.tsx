@@ -6,18 +6,19 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Toolbar from '@mui/material/Toolbar';
-import PersonIcon from '@mui/icons-material/Person';
 // router
 import { matchPath, useLocation } from 'react-router';
 // constants
-import { DRAWER_WIDTH, MINI_DRAWER_WIDTH } from '@/theme/constants';
+import { DRAWER_WIDTH, MINI_DRAWER_WIDTH } from '@/config/constants';
 // components
 import DashboardSidebarPageItem from './DashboardSidebarPageItem';
 // theme mixins
 import {
   getDrawerSxTransitionMixin,
   getDrawerWidthTransitionMixin,
-} from '@/theme/mixins';
+} from '@/utils/drawerTransitions';
+// config
+import { navData } from '../navData';
 
 // ----------------------------------------------------------------------
 
@@ -69,7 +70,7 @@ const DashboardSidebar = ({
         sx={{
           height: '100%',
           display: 'flex',
-          backgroundColor: theme.lighten(theme.palette.primary.light, 0.97),
+          backgroundColor: theme.lighten(theme.palette.primary.light, 0.95),
           flexDirection: 'column',
           justifyContent: 'space-between',
           overflow: 'auto',
@@ -82,7 +83,6 @@ const DashboardSidebar = ({
         }}
       >
         <List
-          dense
           sx={{
             mt: 2,
             padding: mini ? 0 : 0.5,
@@ -90,14 +90,17 @@ const DashboardSidebar = ({
             width: mini ? MINI_DRAWER_WIDTH : 'auto',
           }}
         >
-          <DashboardSidebarPageItem
-            title="Posts"
-            icon={<PersonIcon />}
-            href="/blog/posts"
-            mini={mini}
-            fullyExpanded={isFullyExpanded}
-            selected={!!matchPath('/blog/posts/*', pathname)}
-          />
+          {navData.map((item) => (
+            <DashboardSidebarPageItem
+              key={item.title}
+              title={item.title}
+              icon={item.icon}
+              href={item.href}
+              mini={mini}
+              fullyExpanded={isFullyExpanded}
+              selected={!!matchPath(`${item.href}/*`, pathname)}
+            />
+          ))}
         </List>
       </Box>
     </>
