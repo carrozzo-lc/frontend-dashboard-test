@@ -9,17 +9,16 @@ export interface ApiPost {
   createdAt: Date;
 }
 
-type CreatePostObj = Omit<ApiPost, 'id' | 'createdAt'>;
+type CreatePostInput = Omit<ApiPost, 'id' | 'createdAt'>;
+type CreatePostPayload = CreatePostInput & { createdAt: string };
 
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 const getPosts = async (): Promise<ApiPost[]> => {
-  const response = await axios.get<ApiPost[]>(baseUrl);
-
   await delay(2000);
-
+  const response = await axios.get<ApiPost[]>(baseUrl);
   return response.data.map((post) => ({
     ...post,
     createdAt: new Date(post.createdAt),
@@ -31,23 +30,27 @@ const getPost = async (id: number): Promise<ApiPost[]> => {
   return response.data;
 };
 
-const createPost = async (newPost: CreatePostObj): Promise<ApiPost> => {
-  const response = await axios.post(baseUrl, newPost);
+const createPost = async (newPost: CreatePostInput): Promise<ApiPost> => {
+  await delay(2000);
+  const payload: CreatePostPayload = {
+    ...newPost,
+    createdAt: new Date().toISOString(),
+  };
+  const response = await axios.post(baseUrl, payload);
   return response.data;
 };
 
 const updatePost = async (
   id: number,
-  newPost: CreatePostObj
+  newPost: CreatePostInput
 ): Promise<ApiPost> => {
   const response = await axios.put(`${baseUrl}/${id}`, newPost);
   return response.data;
 };
 
 const deletePost = async (id: number) => {
-  console.log('deletePost', id);
+  await delay(2000);
   const response = await axios.delete(`${baseUrl}/${id}`);
-  console.log('deletePost', response);
   return response.data;
 };
 

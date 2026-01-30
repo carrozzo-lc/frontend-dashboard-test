@@ -4,7 +4,7 @@ import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
 // components
 import Logo from '@/components/Logo';
-import FormLogin from '@/components/auth/FormLogin';
+import FormLogin from '@/components/forms/FormLogin';
 // router
 import { useNavigate } from 'react-router';
 import { useState } from 'react';

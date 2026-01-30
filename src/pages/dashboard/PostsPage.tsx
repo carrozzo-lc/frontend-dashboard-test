@@ -5,20 +5,25 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import BaseTable from '@/components/ui/BaseTable';
 import type { MRT_Cell, MRT_ColumnDef } from 'material-react-table';
 import type { ApiPost } from '@/services/posts.service';
-import { deletePostMutation } from '@/config/mutations';
+import { deletePostMutation, createPostMutation } from '@/config/mutations';
 import BaseDrawer from '@/components/ui/BaseDrawer';
 import Box from '@mui/material/Box';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { PATH_DASHBOARD } from '@/routes/paths';
+import FormPost from '@/components/forms/FormPost';
+import { useAuth } from '@/providers/AuthProvider';
 
 // ----------------------------------------------------------------------
 
 const PostsPage = () => {
   const { data: posts, isLoading } = useQuery(postsQuery());
-  const mutation = useMutation(deletePostMutation());
+  const deletPost = useMutation(deletePostMutation());
+  const createPost = useMutation(createPostMutation());
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [createError, setCreateError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const tableColumns: MRT_ColumnDef<ApiPost>[] = [
     {
@@ -47,18 +52,44 @@ const PostsPage = () => {
   ];
 
   const handelNewPost = () => {
+    setCreateError(null);
     setOpenDrawer(true);
   };
 
+  const handleCreatPost = async (data: { title: string; content: string }) => {
+    if (!user) {
+      setCreateError('Invalid user id');
+      return;
+    }
+
+    try {
+      await createPost.mutateAsync({
+        userId: user.id,
+        title: data.title,
+        content: data.content,
+      });
+      setCreateError(null);
+    } catch (error) {
+      setCreateError('Errore durante la creazione del post.');
+      console.error(error);
+    } finally {
+      setOpenDrawer(false);
+    }
+  };
+
   const handleEditPost = (id: number) => {
-    console.log('Edit row: ', id);
     navigate(`${PATH_DASHBOARD.blog.posts}/${id}`);
   };
 
-  const handleDeletePost = (id: number) => {
+  const handleDeletePost = async (id: number) => {
     const confirmed = window.confirm('Sei sicuro di voler cancellare il post?');
     if (!confirmed) return;
-    mutation.mutate(id);
+
+    try {
+      await deletPost.mutateAsync(id);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -79,7 +110,7 @@ const PostsPage = () => {
 
       <BaseTable
         data={posts ?? []}
-        loading={isLoading}
+        loading={isLoading || deletPost.isPending}
         columns={tableColumns}
         onEditRow={handleEditPost}
         onDeleteRow={handleDeletePost}
@@ -88,7 +119,22 @@ const PostsPage = () => {
       <BaseDrawer
         openDrawer={openDrawer}
         setOpenDrawer={setOpenDrawer}
-        drawerContent={<div>nuovo post</div>}
+        drawerTitle={
+          <Typography
+            variant="h4"
+            component="h3"
+            fontWeight={600}
+            marginBottom={3}
+          >
+            Crea Post
+          </Typography>
+        }
+        drawerContent={
+          <FormPost
+            onSubmit={handleCreatPost}
+            errorMessage={createError ?? undefined}
+          />
+        }
       />
     </>
   );

@@ -6,12 +6,14 @@ import Drawer from '@mui/material/Drawer';
 interface BaseDrawerProps {
   openDrawer: boolean;
   setOpenDrawer: (open: boolean) => void;
+  drawerTitle: React.ReactNode;
   drawerContent: React.ReactNode;
 }
 
 export default function BaseDrawer({
   openDrawer,
   setOpenDrawer,
+  drawerTitle,
   drawerContent,
 }: BaseDrawerProps) {
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -19,7 +21,8 @@ export default function BaseDrawer({
   };
 
   const DrawerList = (
-    <Box sx={{ width: 320 }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box sx={{ width: 320, p: 2 }} role="presentation">
+      {drawerTitle}
       {drawerContent}
     </Box>
   );
