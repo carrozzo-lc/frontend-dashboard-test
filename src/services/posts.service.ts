@@ -45,7 +45,9 @@ const updatePost = async (
 };
 
 const deletePost = async (id: number) => {
+  console.log('deletePost', id);
   const response = await axios.delete(`${baseUrl}/${id}`);
+  console.log('deletePost', response);
   return response.data;
 };
 

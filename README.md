@@ -1,4 +1,4 @@
-# TecnoNews Frontend Dashboard
+# Frontend Dashboard Test
 
 Dashboard admin per gestire post e utenti. Costruito con React, Vite, MUI, React Router e React Query.
 

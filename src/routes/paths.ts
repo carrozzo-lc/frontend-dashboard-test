@@ -21,12 +21,12 @@ export const PATH_PAGE = {
 export const PATH_DASHBOARD = {
   root: ROOTS_DASHBOARD,
   user: {
-    root: path(ROOTS_DASHBOARD, 'user'),
+    root: path(ROOTS_DASHBOARD, ''),
     list: path(ROOTS_DASHBOARD, 'user/list'),
   },
   blog: {
-    root: path(ROOTS_DASHBOARD, 'blog'),
-    posts: path(ROOTS_DASHBOARD, 'blog/posts'),
-    view: (title: string) => path(ROOTS_DASHBOARD, `blog/post/${title}`),
+    root: path(ROOTS_DASHBOARD, ''),
+    posts: path(ROOTS_DASHBOARD, 'posts'),
+    edit: path(ROOTS_DASHBOARD, 'posts/:id'),
   },
 };

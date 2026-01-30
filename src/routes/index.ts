@@ -9,6 +9,7 @@ import NotFound from '@/pages/errors/NotFound';
 import PostsPage from '@/pages/dashboard/PostsPage';
 import UsersPage from '@/pages/dashboard/UsersPage';
 import GlobalErrorPage from '@/pages/errors/GlobalErrorPage';
+import EditPostPage from '@/pages/dashboard/EditPostPage';
 // layouts
 import AuthLayout from '@/layouts/auth/AuthLayout';
 import DashboardLayout from '@/layouts/dashboard/DashboardLayout';
@@ -51,22 +52,18 @@ export const router = createBrowserRouter([
         path: PATH_DASHBOARD.blog.root,
         children: [
           {
-            index: true,
-            loader: () => redirect(PATH_DASHBOARD.blog.posts),
-          },
-          {
             path: PATH_DASHBOARD.blog.posts,
             Component: PostsPage,
+          },
+          {
+            path: PATH_DASHBOARD.blog.edit,
+            Component: EditPostPage,
           },
         ],
       },
       {
         path: PATH_DASHBOARD.user.root,
         children: [
-          {
-            index: true,
-            loader: () => redirect(PATH_DASHBOARD.user.list),
-          },
           {
             path: PATH_DASHBOARD.user.list,
             Component: UsersPage,

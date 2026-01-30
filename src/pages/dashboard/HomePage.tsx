@@ -31,7 +31,7 @@ const HomePage = () => {
               fontWeight={600}
               sx={{ mb: 3 }}
             >
-              Vai alla sezione Blog per gestire i post
+              Vai alla sezione Posts per gestire i post
             </Typography>
             <Button
               variant="contained"
